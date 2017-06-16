@@ -61,6 +61,7 @@ function gameloop() {
     window.requestAniFrame(gameloop);//setInterval, setTimeout
     calcTime();
     clearCanvas();
+    updateBackground();
     bulletPool.draw();
     awayer.move();
     awayer.draw();
