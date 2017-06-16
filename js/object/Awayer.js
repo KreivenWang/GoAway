@@ -1,7 +1,7 @@
 class Awayer extends Dot {
     constructor() {
         super();
-        this.radius = 10;
+        this.radius = 12;
         this.color = '#00ffff';
     }
 

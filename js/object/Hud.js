@@ -40,6 +40,7 @@ class Hud {
             this.ctx.textAlign = 'center';
         }
         this.ctx.strokeText('Game Over', cvsWidth * 0.5, cvsHeight * 0.5);
+        this.ctx.strokeText(' Best : Wave ' + gameData.wave, cvsWidth * 0.5, cvsHeight * 0.5 - 50);
         this.ctx.restore();
     }
 }

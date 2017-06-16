@@ -19,6 +19,8 @@ let mY;
 
 let gameManager;
 
+let restartBtn;
+
 function game() {
     console.log('onload');
     init();
@@ -39,6 +41,9 @@ function init() {
     cvsHeight = cvs1.clientHeight;
 
     cvs2.addEventListener('mousemove', onMouseMove, false);
+
+    restartBtn = document.getElementById('restart');
+    restartBtn.onclick = onRestartClick;
 
     //设置时间
     lastTime = Date.now();
@@ -98,4 +103,8 @@ function onMouseMove(e) {
         mX = e.offSetX == undefined ? e.layerX : e.offSetX;
         mY = e.offSetY == undefined ? e.layerY : e.offSetY;
     }
+}
+
+function onRestartClick() {
+    gameManager.reset();
 }

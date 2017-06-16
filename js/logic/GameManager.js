@@ -22,10 +22,11 @@ class GameManager {
         bulletPool.init();//初始化子弹池
         awayer.born();//玩家出生
         hud.init();//初始化hud
-        gameData.isGameRunning = true;
         this.waveTrigger = setInterval(() => {
             this.nextWave();
         }, 5000);
+        this.showRestartBtn(false);
+        gameData.isGameRunning = true;
     }
 
     nextWave() {
@@ -43,8 +44,20 @@ class GameManager {
     }
 
     gameOver() {
+        if (!gameData.isGameRunning) return;
         awayer.die();
         gameData.isGameRunning = false;
         clearInterval(this.waveTrigger);
+        this.showRestartBtn(true);
+    }
+
+    showRestartBtn(isShow) {
+        let cls = 'hideBtn';
+        if (isShow) {
+            removeClass(restartBtn, cls);
+        } else {
+            if (!hasClass(restartBtn, cls))
+                addClass(restartBtn, cls);
+        }
     }
 }
