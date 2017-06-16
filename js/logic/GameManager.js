@@ -40,7 +40,6 @@ class GameManager {
 
         //每过1波增加1子弹数
         bulletPool.addBullet();
-        console.log(bulletPool.bullets.length);
     }
 
     gameOver() {
