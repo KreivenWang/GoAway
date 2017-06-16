@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>goAway</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.3.css">
+    <style>
+        body {
+            padding-top: 10px;
+        }
+
+        .all_bg {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        #allcanvas {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: 0;
+        }
+
+        #canvas0 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        #canvas1 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        #canvas2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all_bg">
+        <div id="allcanvas">
+            <canvas id="canvas0" width="800" height="600"></canvas>
+            <canvas id="canvas1" width="800" height="600"></canvas>
+            <canvas id="canvas2" width="800" height="600"></canvas>
+        </div>
+    </div>
+    <!--main-->
+    <script type="text/javascript" src="./js/main.js"></script>
+
+    <!--util-->
+    <script type="text/javascript" src="./js/util/commonFunction.js"></script>
+    <script type="text/javascript" src="./js/util/ruleFunction.js"></script>
+    <script type="text/javascript" src="./js/util/enum.js"></script>
+    <script type="text/javascript" src="./js/util/background.js"></script>
+
+    <!--logic-->
+    <script type="text/javascript" src="./js/logic/collision.js"></script>
+    <script type="text/javascript" src="./js/logic/GameManager.js"></script>
+    <script type="text/javascript" src="./js/logic/Rules.js"></script>
+
+    <!--object-->
+    <script type="text/javascript" src="./js/object/GameData.js"></script>
+    <script type="text/javascript" src="./js/object/Hud.js"></script>
+    <script type="text/javascript" src="./js/object/Rect.js"></script>
+    <script type="text/javascript" src="./js/object/Dot.js"></script>
+    <script type="text/javascript" src="./js/object/Awayer.js"></script>
+    <script type="text/javascript" src="./js/object/Bullet.js"></script>
+    <script type="text/javascript" src="./js/object/BulletPool.js"></script>
+
+    <!--test-->
+    <div id="qunit" style="margin-top: 50px;"></div>
+    <div id="qunit-fixture"></div>
+    <script type="text/javascript" src="https://code.jquery.com/qunit/qunit-2.3.3.js"></script>
+    <script type="text/javascript" src="./js/test/test.js"></script>
+</body>
+
+</html>
