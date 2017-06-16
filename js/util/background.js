@@ -1,17 +1,22 @@
 let bgPic;
-let starSmallPic;
-let starBigPic;
+let stars;
 
-function drawBackground() {
+function resetBackground() {
     bgPic = new Image();
-    starSmallPic = new Image();
-    starBigPic = new Image();
+    stars = [];
 
     //异步加载图片，完成后执行回调方法onload来绘制
     bgPic.src = './src/bg.jpg';
-    starSmallPic.src = './src/starSmall.png';
-    starBigPic.src = './src/starBig.png';
 
+    for (var i = 0; i < 40; i++) {
+        let star = new Image();
+        star.src = './src/star' + randomInt(1, 3) + '.png';
+        star.posX = randomInt(0, cvsWidth);
+        star.posY = randomInt(0, cvsHeight);
+        star.deltaViewRatio = randomInt(1, 6) * 0.01;
+        star.size = randomInt(16, 48);
+        stars.push(star);
+    }
 
     // bgPic.onload = function () {
     //     let ctx = getBackgroundContext();
@@ -29,6 +34,10 @@ function drawBackground() {
 function updateBackground() {
     let ctx = getBackgroundContext();
     ctx.drawImage(bgPic, 0, 0, cvsWidth, cvsHeight);
-    ctx.drawImage(starSmallPic, mX*0.01, mY*0.01, cvsWidth, cvsHeight);
-    ctx.drawImage(starBigPic,  mX*0.05, mY*0.05, cvsWidth, cvsHeight);
+    stars.forEach(function (star) {
+        ctx.drawImage(star,
+            star.posX - mX * star.deltaViewRatio,
+            star.posY - mY * star.deltaViewRatio,
+            star.size, star.size);
+    });
 }

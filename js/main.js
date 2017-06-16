@@ -49,9 +49,6 @@ function init() {
     lastTime = Date.now();
     deltaTime = 0;
 
-    //设置背景
-    drawBackground();
-
     //初始化游戏管理器
     gameManager = new GameManager();
     gameManager.reset();

@@ -18,6 +18,7 @@ class GameManager {
     }
 
     reset() {
+        resetBackground();//设置背景
         gameData.reset();//重置游戏数据
         bulletPool.init();//初始化子弹池
         awayer.born();//玩家出生
