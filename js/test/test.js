@@ -18,12 +18,10 @@ QUnit.test("rule Function Test", function (assert) {
     }
 
     //isCollided
-    let rect1 = new Rect();
-    let rect2 = new Rect();
-    rect1.setBasic(0, 0, 100, 100);
-    rect2.setBasic(50, 50, 100, 100);
+    let rect1 = new GameObject(0, 0, 100, 100);
+    let rect2 = new GameObject(50, 50, 100, 100);
     assert.ok(isCollided(rect1, rect2), 'isCollided true');
-    rect2.setBasic(150, 150, 100, 100);
+    rect2 = new GameObject(150, 150, 100, 100);
     assert.notOk(isCollided(rect1, rect2), 'isCollided false');
 
 });

@@ -28,7 +28,7 @@ function resetBackground() {
     // grd.addColorStop(1, "#283569");
     // grd.addColorStop(0, "#1263a2");
     // ctx2.fillStyle = grd;
-    // ctx2.fillRect(0, 0, cvsWidth, cvsHeight);
+    // ctx2.fillGameObject(0, 0, cvsWidth, cvsHeight);
 }
 
 function updateBackground() {

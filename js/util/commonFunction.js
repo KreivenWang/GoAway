@@ -19,12 +19,7 @@ function randomColor() {
 }
 
 
-function lerpAngle(a, b, t) {
-    var d = b - a;
-    if (d > Math.PI) d = d - 2 * Math.PI;
-    if (d < -Math.PI) d = d + 2 * Math.PI;
-    return a + d * t;
-}
+
 
 function inOboundary(arrX, arrY, l, r, t, b) { //在l r t b范围内的检测
     return arrX > l && arrX < r && arrY > t && arrY < b;
@@ -129,6 +124,14 @@ function lerpDistance(aim, cur, ratio) {
     return aim + delta * ratio;
 }
 
+//使当前角度(b)以一定的速度(ratio(0,1))趋向于目标值角度(a)
+function lerpAngle(a, b, ratio) {
+    var d = b - a;
+    if (d > Math.PI) d = d - 2 * Math.PI;
+    if (d < -Math.PI) d = d + 2 * Math.PI;
+    return a + d * ratio;
+}
+
 //计算2个矩形是否发生碰撞
 function isCollided(rect1, rect2) {
     let maxX, maxY;
@@ -137,13 +140,36 @@ function isCollided(rect1, rect2) {
 
     // 判断点是否都在两个对象中  
     return maxX >= rect1.x &&
-        maxX <= rect1.x + rect1.width &&
+        maxX <= rect1.x + rect1.w &&
         maxY >= rect1.y &&
-        maxY <= rect1.y + rect1.height &&
+        maxY <= rect1.y + rect1.h &&
         maxX >= rect2.x &&
-        maxX <= rect2.x + rect2.width &&
+        maxX <= rect2.x + rect2.w &&
         maxY >= rect2.y &&
-        maxY <= rect2.y + rect2.height;
+        maxY <= rect2.y + rect2.h;
 
     // return Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2);
 }
+
+//16进制颜色转RGB, 如: #ff0000 => 255,0,0
+String.prototype.toRGB = function () {
+    var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/; //十六进制颜色值的正则表达式  
+    var sColor = this.toLowerCase();
+    if (sColor && reg.test(sColor)) {
+        if (sColor.length === 4) {
+            var sColorNew = "#";
+            for (var i = 1; i < 4; i += 1) {
+                sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+            }
+            sColor = sColorNew;
+        }
+        //处理六位的颜色值  
+        var sColorChange = [];
+        for (var i = 1; i < 7; i += 2) {
+            sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
+        }
+        return sColorChange.join(",");
+    } else {
+        return sColor;
+    }
+};  

@@ -21,6 +21,8 @@ let gameManager;
 
 let restartBtn;
 
+let curTheme;
+
 function game() {
     console.log('onload');
     init();
@@ -49,6 +51,9 @@ function init() {
     lastTime = Date.now();
     deltaTime = 0;
 
+    //选择默认主题
+    selectTheme_NightSky();
+
     //初始化游戏管理器
     gameManager = new GameManager();
     gameManager.reset();
@@ -75,7 +80,7 @@ function calcTime() {
 }
 
 function clearCanvas() {
-    //背景不清空
+    ctx0.clearRect(0, 0, cvsWidth, cvsHeight);
     ctx1.clearRect(0, 0, cvsWidth, cvsHeight);
     ctx2.clearRect(0, 0, cvsWidth, cvsHeight);
 }

@@ -3,6 +3,7 @@ class Bullet extends Dot {
         super();
         this.angle = 1; //角度
         this.orientation = Orientation.BOTTOM; //朝向
+        this.tail = new Tail();
     }
 
     getCanvasContext() {
@@ -12,42 +13,42 @@ class Bullet extends Dot {
     born() {
         super.born();
         this.orientation = getRandomOrientation();
-        if (this.orientation == Orientation.TOP)
-            this.orientation = Orientation.BOTTOM;
         this.speed = Rules.BULLET_INIT_SPEED + randomInt(10, 20) / 100 - 0.1;
-        this.color = '#ff6600';
+        this.color = curTheme.BULLET;
 
         switch (this.orientation) {
-            // case Orientation.TOP:
-            //     this.startX = Math.random() * cvsWidth;
-            //     this.startY = 0;
-            //     break;
+            case Orientation.TOP:
+                this.x = randomInt(1, cvsWidth);
+                this.y = 0;
+                this.angle = randomInt(225, 315);
+                break;
             case Orientation.BOTTOM:
-                this.startX = randomInt(1, cvsWidth);
-                this.startY = cvsHeight;
+                this.x = randomInt(1, cvsWidth);
+                this.y = cvsHeight;
                 this.angle = randomInt(45, 135);
-                // this.color = '#ff0000';
                 break;
             case Orientation.LEFT:
-                this.startX = 0;
-                this.startY = randomInt(1, cvsHeight);
+                this.x = 0;
+                this.y = randomInt(1, cvsHeight);
                 this.angle = randomInt(-45, 45);
-                // this.color = '#ffff00';
                 break;
             case Orientation.RIGHT:
-                this.startX = cvsWidth;
-                this.startY = randomInt(1, cvsWidth);
+                this.x = cvsWidth;
+                this.y = randomInt(1, cvsWidth);
                 this.angle = randomInt(135, 225);
-                // this.color = '#00ff00';
                 break;
         }
-        this.x = this.startX;
-        this.y = this.startY;
+        this.tail.born();
+        this.tail.setColor(curTheme.BULLET_TAIL);
     }
 
     move() {
         let deltaDistance = this.speed * deltaTime;
         switch (this.orientation) {
+            case Orientation.TOP:
+                this.x += deltaDistance / angleToSlope(this.angle);
+                this.y += deltaDistance;
+                break;
             case Orientation.BOTTOM:
                 this.x += deltaDistance / angleToSlope(this.angle);
                 this.y -= deltaDistance;
@@ -62,6 +63,8 @@ class Bullet extends Dot {
                 break;
         }
 
+        this.tail.draw(this.x, this.y);
+
         if (this.outOfSight()) {
             this.die();
         }
@@ -73,5 +76,10 @@ class Bullet extends Dot {
             this.y > cvsHeight + range ||
             this.x < 0 - range ||
             this.y < 0 - range;
+    }
+
+    die() {
+        super.die();
+        this.tail.die();
     }
 }
