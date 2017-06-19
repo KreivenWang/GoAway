@@ -8,42 +8,60 @@
     <title>goAway</title>
     <!--<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.3.css">-->
     <style>
-        body {
-            padding-top: 10px;
-        }
-
-        .all_bg {
-            width: 800px;
-            height: 600px;
+        #app {
+            margin-top: 10px;
+            position: relative;
+            width: 1424px;
+            height: 798px;
             margin: 0 auto;
+            /*border: 10px solid #001133;*/
         }
 
         #allcanvas {
-            position: relative;
-            width: 800px;
-            height: 600px;
-            margin: 0;
+            position: absolute;
+            left: 200px;
+            bottom: 0;
+            width: 1024px;
+            height: 768px;
         }
 
-        #canvas0 {
+        .middleCanvas {
             position: absolute;
             bottom: 0;
             left: 0;
+        }
+
+        #canvas0 {
             z-index: 0;
         }
 
         #canvas1 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             z-index: 1;
         }
 
         #canvas2 {
+            z-index: 2;
+        }
+
+        #topBoard {
+            position: absolute;
+            top: 0;
+            left: 0;
+            /*background: goldenrod;*/
+        }
+
+        #leftBoard {
             position: absolute;
             bottom: 0;
             left: 0;
-            z-index: 2;
+            /*background: rebeccapurple;*/
+        }
+
+        #rightBoard {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            /*background: salmon;*/
         }
 
         #restart {
@@ -54,8 +72,8 @@
             border: 2px solid white;
             border-radius: 8px;
             position: absolute;
-            left: 355px;
-            top: 350px;
+            left: 46%;
+            top: 60%;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 18px;
             color: white;
@@ -78,14 +96,19 @@
 </head>
 
 <body>
-    <div class="all_bg">
+    <div id="app">
         <div id="allcanvas">
-            <canvas id="canvas0" width="800" height="600"></canvas>
-            <canvas id="canvas1" width="800" height="600"></canvas>
-            <canvas id="canvas2" width="800" height="600"></canvas>
-            <a id="restart">Restart</a>
+            <canvas id="canvas0" class="middleCanvas" width="1024" height="768"></canvas>
+            <canvas id="canvas1" class="middleCanvas" width="1024" height="768"></canvas>
+            <canvas id="canvas2" class="middleCanvas" width="1024" height="768"></canvas>
         </div>
+        <canvas id="topBoard" width="1424" height="30"></canvas>
+        <canvas id="leftBoard" width="200" height="768"></canvas>
+        <canvas id="rightBoard" width="200" height="768"></canvas>
+        <a id="restart">Restart</a>
     </div>
+
+
     <!--main-->
     <script type="text/javascript" src="./js/main.js"></script>
 

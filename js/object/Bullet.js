@@ -14,7 +14,7 @@ class Bullet extends Dot {
         this.orientation = getRandomOrientation();
         if (this.orientation == Orientation.TOP)
             this.orientation = Orientation.BOTTOM;
-        this.speed = randomInt(8, 18) / 100;
+        this.speed = Rules.BULLET_INIT_SPEED + randomInt(10, 20) / 100 - 0.1;
         this.color = '#ff6600';
 
         switch (this.orientation) {
