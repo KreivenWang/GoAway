@@ -1,6 +1,6 @@
 let Rules = {
     //子弹初始数量
-    BULLET_INIT_NUM: 10,
+    BULLET_INIT_NUM: 130,
 
     //子弹数量的增量
     BULLET_NUM_INCREMENT: 1,
